@@ -32,10 +32,12 @@
     z-index: 3;
 }
 
-h1, h2 {
+.main-title {
     font-family: 'Poppins', Arial, sans-serif;
     color: var(--rose-red);
+    font-size: 2.7em;
     margin-bottom: 12px;
+    font-weight: 700;
 }
 
 .subtitle {
@@ -44,11 +46,19 @@ h1, h2 {
     margin-bottom: 32px;
 }
 
-.rose-logo {
-    max-width: 120px;
-    margin-bottom: 18px;
-    border-radius: 15px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+.rose-logo-main {
+    max-width: 350px;
+    width: 80vw;
+    margin-bottom: 24px;
+    border-radius: 18px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.09);
+    background: #fff;
+}
+
+h1, h2 {
+    font-family: 'Poppins', Arial, sans-serif;
+    color: var(--rose-red);
+    margin-bottom: 12px;
 }
 
 /* Edge Navigation Buttons */
@@ -118,28 +128,21 @@ h1, h2 {
   box-shadow: 0 20px 40px rgba(0,0,0,0.09);
   position: relative;
 }
-.header {
+.timeline-intro {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 16px;
 }
-.header h2 {
-  color: #c12040;
-  font-size: 2.3em;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-.history-star, .history-dot {
-  font-size: 1.2em;
-  color: #c12040;
-}
-.tagline, .journey-text {
+.history-quote {
   color: #596a77;
-  font-size: 1.1em;
+  font-size: 1.15em;
   font-style: italic;
   margin: 10px 0 7px 0;
+}
+.journey-text {
+  color: #596a77;
+  font-size: 1.12em;
+  font-style: italic;
+  margin: 0 0 18px 0;
 }
 .timeline {
   position: relative;
@@ -227,7 +230,7 @@ h1, h2 {
   background: #f8a954;
   color: #fff;
 }
-.staff-count.green { background: #3aac76;}
+.staff-count.green { background: #3aae76;}
 .staff-count.orange { background: #f8a954;}
 .staff-count.gray { background: #596a77;}
 .growth { background: #3aac76; color: #fff;}
