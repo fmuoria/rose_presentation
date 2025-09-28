@@ -8,150 +8,262 @@
     --rose-white: #fff;
 }
 
-body {
-    font-family: 'Poppins', Arial, sans-serif;
+/* Full Page Slides */
+.slide.full {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
     background: var(--rose-bg);
-    color: var(--rose-dark);
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-.presentation-container {
-    max-width: 900px;
-    margin: 40px auto;
-    background: var(--rose-white);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(193,32,64,0.08);
-    padding: 35px 24px 90px 24px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Central Navigation Controls */
-.nav-controls {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    gap: 32px;
-    margin: 32px auto 0 auto;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 24px;
-    z-index: 20;
+    overflow-y: auto;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.7s cubic-bezier(0.77,0,0.175,1);
 }
 
-.nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(90deg, var(--rose-red) 65%, var(--rose-accent) 100%);
-    color: var(--rose-white);
-    font-weight: 700;
-    font-size: 1.15em;
-    border: none;
-    border-radius: 30px;
-    padding: 14px 32px;
-    box-shadow: 0 3px 12px rgba(193,32,64,0.12);
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
-    outline: none;
-    min-width: 140px;
-    position: relative;
-    letter-spacing: 0.02em;
+.slide.full.active {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 3;
 }
 
-.nav-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-
-.nav-btn:hover, .nav-btn:focus {
-    background: linear-gradient(90deg, var(--rose-accent) 65%, var(--rose-red) 100%);
-    box-shadow: 0 4px 16px rgba(193,32,64,0.21);
-    transform: translateY(-2px) scale(1.04);
-}
-
-.nav-icon {
-    display: flex;
-    align-items: center;
-}
-
-.nav-btn svg {
-    width: 28px;
-    height: 28px;
-    display: block;
-    transition: transform 0.2s;
-}
-
-.nav-btn:hover svg,
-.nav-btn:focus svg {
-    transform: scale(1.15);
-}
-
-/* Slide Counter */
-.slide-counter {
-    text-align: right;
-    font-size: 1.1em;
+h1, h2 {
+    font-family: 'Poppins', Arial, sans-serif;
     color: var(--rose-red);
-    margin-bottom: 16px;
-    margin-right: 12px;
-}
-
-/* Slides and Cards styling... (simplified for brevity, use your current styles for cards, grids, etc.) */
-h1 {
-    font-size: 2.7em;
-    font-weight: 700;
-    color: var(--rose-red);
-    margin-bottom: 15px;
-}
-
-h2 {
-    font-size: 2em;
-    font-weight: 600;
-    color: var(--rose-dark);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    margin-bottom: 12px;
 }
 
 .subtitle {
-    font-size: 1.25em;
+    font-size: 1.4em;
     color: var(--rose-green);
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 }
 
 .rose-logo {
     max-width: 120px;
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     border-radius: 15px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
-.tagline {
-    font-size: 1.15em;
-    color: #596a77;
-    margin-bottom: 12px;
+/* Edge Navigation Buttons */
+.nav-btn.edge {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, var(--rose-red), var(--rose-accent));
+    color: var(--rose-white);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 14px rgba(193,32,64,0.13);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    font-size: 1.6em;
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.nav-btn.edge.left { left: 32px; }
+.nav-btn.edge.right { right: 32px; }
+.nav-btn.edge svg { width: 36px; height: 36px; }
+
+.nav-btn.edge:disabled { opacity: 0.5; cursor: not-allowed; }
+.nav-btn.edge:hover, .nav-btn.edge:focus {
+    background: linear-gradient(135deg, var(--rose-accent), var(--rose-red));
+    box-shadow: 0 8px 24px rgba(193,32,64,0.22);
+    transform: translateY(-50%) scale(1.08);
 }
 
-/* Responsive */
+/* Slide Counter (top right) */
+.slide-counter {
+    position: fixed;
+    top: 32px;
+    right: 48px;
+    font-size: 1.15em;
+    color: var(--rose-red);
+    z-index: 20;
+    background: var(--rose-white);
+    padding: 8px 18px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(193,32,64,0.09);
+    font-weight: 600;
+}
+
+/* Timeline styles from your previous message - harmonized */
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.09);
+}
+.header {
+    text-align: center;
+    margin-bottom: 38px;
+}
+.header h2 {
+    color: var(--rose-red);
+    font-size: 2.1em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+.header .icon {
+    width: 34px;
+    height: 34px;
+    fill: var(--rose-red);
+}
+.tagline {
+    color: #666;
+    font-size: 1.05em;
+    font-style: italic;
+    margin: 8px 0;
+}
+.journey-text {
+    color: #888;
+    font-size: 0.98em;
+    margin-bottom: 30px;
+}
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--rose-red), #f57051, var(--rose-yellow), var(--rose-green));
+    transform: translateX(-50%);
+}
+.timeline-item {
+    display: flex;
+    margin-bottom: 50px;
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+.timeline-content {
+    flex: 1;
+    max-width: 400px;
+    margin: 0 30px;
+    position: relative;
+}
+.timeline-item:nth-child(even) .timeline-content {
+    text-align: right;
+}
+.year-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rose-red), #d31f33);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 12px rgba(193, 32, 64, 0.3);
+}
+.milestone-card {
+    background: white;
+    border-radius: 15px;
+    padding: 23px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border-left: 5px solid var(--rose-red);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+.timeline-item:nth-child(even) .milestone-card {
+    border-left: none;
+    border-right: 5px solid var(--rose-red);
+}
+.milestone-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.13);
+}
+.milestone-title {
+    font-size: 1.18em;
+    font-weight: bold;
+    color: var(--rose-dark);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.timeline-item:nth-child(even) .milestone-title {
+    justify-content: flex-end;
+}
+.milestone-icon {
+    width: 22px;
+    height: 22px;
+    fill: var(--rose-red);
+    flex-shrink: 0;
+}
+.milestone-description {
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 12px;
+}
+.staff-count {
+    background: linear-gradient(135deg, var(--rose-yellow), var(--rose-accent));
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    display: inline-block;
+}
+.timeline-dot {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    width: 18px;
+    height: 18px;
+    background: var(--rose-red);
+    border-radius: 50%;
+    transform: translateX(-50%);
+    border: 4px solid white;
+    box-shadow: 0 0 0 4px var(--rose-red);
+    z-index: 10;
+}
+.growth-highlight {
+    background: linear-gradient(135deg, var(--rose-green), #27a065);
+}
+.future-item .year-badge {
+    background: linear-gradient(135deg, #596a77, #4a5a66);
+}
+.future-item .timeline-dot {
+    background: #596a77;
+    box-shadow: 0 0 0 4px #596a77;
+}
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+@media (max-width: 768px) {
+    .timeline-line { left: 30px; }
+    .timeline-item { flex-direction: column !important; margin-left: 60px;}
+    .timeline-item:nth-child(even) .timeline-content { text-align: left; }
+    .timeline-item:nth-child(even) .milestone-title { justify-content: flex-start; }
+    .timeline-item:nth-child(even) .milestone-card { border-left: 5px solid var(--rose-red); border-right: none;}
+    .timeline-dot { left: 30px; }
+}
 @media (max-width: 680px) {
-    .presentation-container {
-        padding: 14px 2px 110px 2px;
-    }
-    .nav-controls {
-        gap: 12px;
-        bottom: 10px;
-    }
-    .nav-btn {
-        padding: 10px 16px;
-        font-size: 1em;
-        min-width: 90px;
-    }
-    .nav-btn svg {
-        width: 22px;
-        height: 22px;
-    }
+    .nav-btn.edge { width: 44px; height: 44px; }
+    .nav-btn.edge svg { width: 24px; height: 24px; }
+    .slide-counter { right: 12px; top: 12px; padding: 6px 10px; font-size: 0.95em; }
 }
